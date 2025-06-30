@@ -46,8 +46,10 @@ export const loadNonCriticalResources = () => {
   }
 };
 
-export default {
+const performanceOptimizations = {
   preloadAuthModules,
   optimizeImageLoading,
   loadNonCriticalResources
 };
+
+export default performanceOptimizations;
