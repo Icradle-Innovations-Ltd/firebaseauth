@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import fixFirebaseNetworkIssues from '@/utils/firebase-network-fix';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,11 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const { signUp, signInWithGoogle, signInWithGitHub, signInWithFacebook, signInWithMicrosoft } = useAuth();
   const router = useRouter();
+  
+  // Apply network fixes for Firebase QUIC protocol issues
+  useEffect(() => {
+    fixFirebaseNetworkIssues();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

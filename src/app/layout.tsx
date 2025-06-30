@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { AuthProvider } from '@/context/AuthContext';
 import './globals.css';
+import WebSocketFix from '@/components/WebSocketFix';
 
 export const metadata: Metadata = {
   title: 'Firebase Auth App',
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <WebSocketFix />
         <AuthProvider>
           {children}
         </AuthProvider>
