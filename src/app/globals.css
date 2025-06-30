@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: #374151;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: light; /* Force light scheme for forms */
+  }
+  
+  /* Override dark mode for form elements */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  select {
+    color: #374151 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+  }
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* Custom styles for form elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+}
+
+input::placeholder {
+  color: #9ca3af !important;
+}
+
+select {
+  color: #374151 !important;
+  background-color: white !important;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #d1d5db !important;
+}
+
+select:focus {
+  color: #374151 !important;
+  background-color: white !important;
+  border-color: #8b5cf6 !important;
+}
+
+select option {
+  color: #374151 !important;
+  background-color: white !important;
+  padding: 8px 12px;
+}
+
+/* Ensure proper contrast for form elements */
+.form-select {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  appearance: menulist;
+  border: 1px solid #d1d5db !important;
+}
+
+.form-select:focus {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+}
+
+.form-select option {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Country selector specific styling */
+.country-select {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+
+.country-select option {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+
+/* Label styling */
+label {
+  color: #374151 !important;
+}
+
+/* Button styling override */
+button[type="submit"] {
+  color: white !important;
+}
+
+/* Span styling for country code display */
+span.inline-flex {
+  color: #374151 !important;
+  background-color: #f9fafb !important;
+}
+
+/* Specific input field classes */
+.search-input,
+.phone-input,
+.verification-input {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.search-input:focus,
+.phone-input:focus,
+.verification-input:focus {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1) !important;
+}
+
+.search-input::placeholder,
+.phone-input::placeholder,
+.verification-input::placeholder {
+  color: #9ca3af !important;
+}
+
+
