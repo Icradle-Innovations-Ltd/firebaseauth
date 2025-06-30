@@ -7,18 +7,13 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  FacebookAuthProvider,
-  OAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
   RecaptchaVerifier,
   signInWithPhoneNumber,
   ConfirmationResult,
   sendPasswordResetEmail,
 } from 'firebase/auth';
+import lazyLoadAuthProvider from '@/utils/lazy-auth-provider';
 import { auth } from '@/lib/firebase';
 
 interface AuthContextType {
@@ -57,6 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const checkRedirectResult = async () => {
       try {
         // Check for any pending redirect result
+        const { getRedirectResult } = await import('firebase/auth');
         await getRedirectResult(auth);
       } catch (redirectError) {
         console.error('Redirect authentication error:', redirectError);
@@ -105,8 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signInWithGoogle = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      // Use popup authentication which is more compatible across browsers
+      const provider = await lazyLoadAuthProvider('google');
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Google sign-in failed:", error);
@@ -116,7 +111,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signInWithGitHub = async () => {
     try {
-      const provider = new GithubAuthProvider();
+      const provider = await lazyLoadAuthProvider('github');
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("GitHub sign-in failed:", error);
@@ -126,7 +121,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signInWithFacebook = async () => {
     try {
-      const provider = new FacebookAuthProvider();
+      const provider = await lazyLoadAuthProvider('facebook');
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Facebook sign-in failed:", error);
@@ -136,7 +131,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signInWithMicrosoft = async () => {
     try {
-      const provider = new OAuthProvider('microsoft.com');
+      const provider = await lazyLoadAuthProvider('microsoft');
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Microsoft sign-in failed:", error);
